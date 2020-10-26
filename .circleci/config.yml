@@ -24,6 +24,12 @@ jobs:
       - run:
           name: release_job
           command: echo release_job
+  tag_job:
+    executor: my_executor
+    steps:
+      - run:
+          name: tag_job
+          command: echo tag_job
 
 workflows:
   workflow:
@@ -39,3 +45,7 @@ workflows:
             branches:
               only:
                 - release
+      - tag_job:
+          filters:
+            tags:
+              only: /.*/
