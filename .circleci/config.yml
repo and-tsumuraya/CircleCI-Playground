@@ -32,6 +32,7 @@ jobs:
           command: echo tag_job
 
 workflows:
+  version: 2
   workflow:
     jobs:
       - test_job
