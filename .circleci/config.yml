@@ -32,8 +32,10 @@ workflows:
       - master_job:
           filters:
             branches:
-              only: master
+              only:
+                - master
       - release_job:
           filters:
             branches:
-              only: release
+              only:
+                - release
