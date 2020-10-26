@@ -18,6 +18,12 @@ jobs:
       - run:
           name: master_job
           command: echo master_job
+  release_job:
+    executor: my_executor
+    steps:
+      - run:
+          name: release_job
+          command: echo release_job
 
 workflows:
   workflow:
@@ -27,3 +33,7 @@ workflows:
         filters:
           branches:
             only: master
+      - release_job:
+        filters:
+          branches:
+            only: release
