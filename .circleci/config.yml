@@ -41,6 +41,8 @@ workflows:
             branches:
               only:
                 - master
+            tags:
+              only: /.*/
       - release_job:
           filters:
             branches:
