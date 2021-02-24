@@ -17,7 +17,11 @@ jobs:
     steps:
       - run:
           name: master_job
-          command: echo master_job
+          command: |
+            echo master_job
+            DIST_BRANCH=`curl -s https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/${CIRCLE_PULL_REQUEST##*/}?access_token=${GITHUB_TOKEN} | jq -r '.base.ref'`
+            echo ${DIST_BRANCH}
+
   release_job:
     executor: my_executor
     steps:
