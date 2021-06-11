@@ -47,6 +47,7 @@ jobs:
       - run:
           name: release_job
           command: echo release_job
+
   tag_job:
     executor: my_executor
     steps:
