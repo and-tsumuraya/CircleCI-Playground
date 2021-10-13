@@ -26,7 +26,9 @@ jobs:
       - run:
           name: git-pr-release
           command: |
+            BASE_BRANCH=`curl -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/${CIRCLE_PULL_REQUEST##*/} | jq -r '.base.ref'`
             DIST_BRANCH=`curl -s https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/${CIRCLE_PULL_REQUEST##*/}?access_token=${GITHUB_TOKEN} | jq -r '.base.ref'`
+            echo ${BASE_BRANCH}
             echo ${DIST_BRANCH}
             echo ${CIRCLE_BRANCH}
             if [[ "${DIST_BRANCH:-undefined}" = "release" ]] && [[ "${CIRCLE_BRANCH:-undefined}" = "master" ]]; then
